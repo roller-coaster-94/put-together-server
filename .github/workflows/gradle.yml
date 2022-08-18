@@ -13,7 +13,6 @@ on:
       - 'hotfix'
       - 'feat/*'
       - 'dev'
-      - 'main'
   pull_request:
     branches:
       - 'main'
