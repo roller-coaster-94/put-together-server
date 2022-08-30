@@ -16,7 +16,7 @@ public class EssayService {
 
     @Transactional
     public EssayResponse insertEssay(EssayRequest essayRequest) {
-        Essay essay = EssayRequest.to(essayRequest);
+        Essay essay = essayRequest.toEssay();
         return EssayResponse.from(essayRepository.save(essay));
     }
 }

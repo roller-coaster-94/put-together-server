@@ -6,23 +6,42 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class EssayRequest {
 
-    private Long id;
-
     private String title;
 
+    private String content;
+
+    private String status;
+
+    private Integer viewCount;
+
+    private LocalDateTime deletedDate;
+
+    private String isDeleted;
+
     @Builder
-    public EssayRequest(Long id, String title) {
-        this.id = id;
+    public EssayRequest(String title, String content, String status, Integer viewCount, LocalDateTime deletedDate, String isDeleted) {
         this.title = title;
+        this.content = content;
+        this.status = status;
+        this.viewCount = viewCount;
+        this.deletedDate = deletedDate;
+        this.isDeleted = isDeleted;
     }
 
-    public static Essay to(EssayRequest essayRequest) {
+    public Essay toEssay() {
         return Essay.builder()
-                .title(essayRequest.getTitle())
+                .title(title)
+                .content(content)
+                .status(status)
+                .viewCount(viewCount)
+                .deletedDate(deletedDate)
+                .isDeleted(isDeleted)
                 .build();
     }
 }

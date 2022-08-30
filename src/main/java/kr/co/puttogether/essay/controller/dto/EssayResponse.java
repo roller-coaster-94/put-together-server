@@ -14,16 +14,24 @@ public class EssayResponse {
 
     private String title;
 
+    private String content;
+
+    private Integer viewCount;
+
     @Builder
-    public EssayResponse(Long id, String title) {
+    public EssayResponse(Long id, String title, String content, Integer viewCount) {
         this.id = id;
         this.title = title;
+        this.content = content;
+        this.viewCount = viewCount;
     }
 
     public static EssayResponse from(Essay essay) {
         return EssayResponse.builder()
                 .id(essay.getId())
                 .title(essay.getTitle())
+                .content(essay.getContent())
+                .viewCount(essay.getViewCount()) // FIXME
                 .build();
     }
 }
