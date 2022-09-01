@@ -1,9 +1,9 @@
 package kr.co.puttogether.essay.controller;
 
+import kr.co.puttogether.common.dto.Response;
+import kr.co.puttogether.core.ApiResult;
 import kr.co.puttogether.essay.controller.dto.EssayRequest;
 import kr.co.puttogether.essay.service.EssayService;
-import kr.co.puttogether.core.ApiResult;
-import kr.co.puttogether.common.dto.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
