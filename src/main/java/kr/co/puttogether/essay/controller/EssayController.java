@@ -23,6 +23,6 @@ public class EssayController extends ApiResult {
     @PostMapping
     public ResponseEntity<Response> insertEssay(
             @Valid @RequestBody EssayRequest essayRequest) {
-        return response(essayService.insertEssay(essayRequest));
+        return response(essayService.saveEssay(essayRequest));
     }
 }
