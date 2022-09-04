@@ -5,8 +5,9 @@ spring:
 
   jpa:
     show_sql: true
-#    hibernate:
-#      ddl-auto: create
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL9Dialect
