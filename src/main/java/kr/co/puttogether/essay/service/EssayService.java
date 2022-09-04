@@ -1,5 +1,6 @@
 package kr.co.puttogether.essay.service;
 
+import kr.co.puttogether.common.exception.ModelNotFoundException;
 import kr.co.puttogether.essay.controller.dto.EssayRequest;
 import kr.co.puttogether.essay.controller.dto.EssayResponse;
 import kr.co.puttogether.essay.domain.Essay;
@@ -20,4 +21,16 @@ public class EssayService {
         return EssayResponse.from(essayRepository.save(essay));
     }
 
+    public EssayResponse selectEssay(Long essayId) {
+        Essay essay = essayRepository.findById(essayId).orElseThrow(
+                () -> new ModelNotFoundException(ModelNotFoundException.ESSAY_NOT_FOUND));
+        return EssayResponse.from(essay);
+    }
+
+    public Long deleteEssay(Long essayId) {
+        Essay essay = essayRepository.findById(essayId).orElseThrow(
+                () -> new ModelNotFoundException(ModelNotFoundException.ESSAY_NOT_FOUND));
+        essayRepository.delete(essay);
+        return essayId;
+    }
 }

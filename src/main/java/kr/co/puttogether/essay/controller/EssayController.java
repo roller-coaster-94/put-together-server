@@ -6,10 +6,7 @@ import kr.co.puttogether.essay.controller.dto.EssayRequest;
 import kr.co.puttogether.essay.service.EssayService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -24,5 +21,17 @@ public class EssayController extends ApiResult {
     public ResponseEntity<Response> insertEssay(
             @Valid @RequestBody EssayRequest essayRequest) {
         return response(essayService.saveEssay(essayRequest));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Response> selectEssay(
+            @PathVariable("id") Long essayId) {
+        return response(essayService.selectEssay(essayId));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Response> deleteEssay(
+            @PathVariable("id") Long essayId) {
+        return response(essayService.deleteEssay(essayId));
     }
 }

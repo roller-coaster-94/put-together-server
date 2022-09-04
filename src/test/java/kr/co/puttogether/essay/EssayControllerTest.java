@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
@@ -56,5 +56,31 @@ public class EssayControllerTest {
 
         // then
         verify(essayService).saveEssay(any());
+    }
+
+    @Test
+    public void 에세이_조회_테스트() throws Exception {
+        // given
+        Long essayId = 1L;
+
+        // when
+        mockMvc.perform(get("/essay/" + essayId.toString()))
+                .andExpect(status().isOk());
+
+        // then
+        verify(essayService).selectEssay(essayId);
+    }
+
+    @Test
+    public void 에세이_삭제_테스트() throws Exception {
+        // given
+        Long essayId = 1L;
+
+        // when
+        mockMvc.perform(delete("/essay/" + essayId.toString()))
+                .andExpect(status().isOk());
+
+        // then
+        verify(essayService).deleteEssay(essayId);
     }
 }
